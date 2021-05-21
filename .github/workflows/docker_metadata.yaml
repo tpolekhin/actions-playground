@@ -20,8 +20,8 @@ jobs:
         id: bake
         run: echo ::set-output name=bake::$(cat ${{ steps.meta.outputs.bake-file }} )
 
-      - name: steps.meta.outputs.labels
+      - name: Print outputs
         run: echo ${{ steps.bake.outputs.bake }}
 
-      # - name: steps.meta.outputs.labels.org.opencontainers.image.created
-      #   run: echo ${{fromJSON(steps.bake.outputs.bake).target.docker-metadata-action.labels.org.opencontainers.image.created}}
+      - name: steps.meta.outputs.labels.org.opencontainers.image.created
+        run: echo ${{ toJSON(steps.bake.outputs.bake).target.docker-metadata-action.labels.org.opencontainers.image.created }}

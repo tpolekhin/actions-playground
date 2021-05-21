@@ -18,10 +18,10 @@ jobs:
 
       - name: Set outputs
         id: bake
-        run: echo "::set-output name=bake::toJSON( $(cat ${{ steps.meta.outputs.bake-file }} ) )"
+        run: echo ::set-output name=bake::$(cat ${{ steps.meta.outputs.bake-file }} )
 
       - name: steps.meta.outputs.labels
-        run: echo ${{fromJSON(steps.bake.outputs.bake)}}
+        run: echo ${{ steps.bake.outputs.bake }}
 
-      - name: steps.meta.outputs.labels.org.opencontainers.image.created
-        run: echo ${{fromJSON(steps.bake.outputs.bake).target.docker-metadata-action.labels.org.opencontainers.image.created}}
+      # - name: steps.meta.outputs.labels.org.opencontainers.image.created
+      #   run: echo ${{fromJSON(steps.bake.outputs.bake).target.docker-metadata-action.labels.org.opencontainers.image.created}}

@@ -17,10 +17,10 @@ jobs:
           images: dummy
 
       - name: steps.meta.outputs.tags
-        run: "echo ${{ steps.meta.outputs.tags }}"
+        run: "echo '${{ steps.meta.outputs.tags }}'"
 
       - name: steps.meta.outputs.labels
-        run: echo ${{ steps.meta.outputs.labels }}
+        run: "echo '${{ steps.meta.outputs.labels }}'"
 
       - name: steps.meta.outputs.labels.org.opencontainers.image.created
-        run: echo ${{ steps.meta.outputs.labels.org.opencontainers.image.created }}
+        run: "echo '${{ steps.meta.outputs.labels.org.opencontainers.image.created }}'"

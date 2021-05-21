@@ -1,0 +1,26 @@
+name: Docker Metadata Testing
+
+on: push 
+
+jobs:
+  steps-outcome:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Prepare image metadata
+        uses: docker/metadata-action@v3
+        id: meta
+        with:
+          images: dummy
+
+      - name: steps.meta.outputs.tags
+        run: "echo ${{ steps.meta.outputs.tags }}"
+
+      - name: steps.meta.outputs.labels
+        run: echo ${{ steps.meta.outputs.labels }}
+
+      - name: steps.meta.outputs.labels.org.opencontainers.image.created
+        run: echo ${{ steps.meta.outputs.labels.org.opencontainers.image.created }}

@@ -1,0 +1,41 @@
+name: Step Outcome Testing
+
+on: push 
+
+jobs:
+  steps-outcome:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Success
+        id: step1
+        run: exit 0
+      
+      - name: Failure
+        id: step2
+        run: exit 1
+
+      - name: Run always
+        id: step3
+        if: always()
+        run: exit 0
+
+      - name: Run if all success
+        id: step4
+        if: success()
+        run: exit 0
+
+      - name: Run if something failed
+        id: step5
+        if: failure()
+        run: exit 0
+
+      - name: Run only if step1 succeed
+        id: step6
+        if: steps.step1.outcome == 'success'
+        run: exit 0
+
+      - name: Run only if step2 failed
+        id: step7
+        if: steps.step2.outcome == 'failure'
+        run: exit 0

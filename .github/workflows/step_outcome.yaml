@@ -32,10 +32,10 @@ jobs:
 
       - name: Run only if step1 succeed
         id: step6
-        if: steps.step1.outcome == 'success'
+        if: ${{ steps.step1.outcome == 'success' }}
         run: exit 0
 
       - name: Run only if step2 failed
         id: step7
-        if: steps.step2.outcome == 'failure'
+        if: ${{ steps.step2.outcome == 'failure' }}
         run: exit 0

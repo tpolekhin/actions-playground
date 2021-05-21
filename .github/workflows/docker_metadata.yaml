@@ -15,10 +15,13 @@ jobs:
         id: meta
         with:
           images: dummy
-        run: echo ::set-output name=labels-map::fromJSON(toJSON($(cat ${{ steps.meta.outputs.bake-file }} )).target.docker-metadata-action.labels)
 
-      - name: steps.meta.outputs.labels-map
+      - name: Extract meta labels map
+        id: extra
+        run: echo ::set-output name=labels::fromJSON(toJSON($(cat ${{ steps.meta.outputs.bake-file }} )).target.docker-metadata-action.labels)
+
+      - name: steps.extra.outputs.labels
         run: |
-          echo ${{ steps.meta.outputs.labels-map['org.opencontainers.image.created'] }}
-          echo ${{ steps.meta.outputs.labels-map['org.opencontainers.image.version'] }}
-          echo ${{ steps.meta.outputs.labels-map['org.opencontainers.image.revision'] }}
+          echo ${{ steps.extra.outputs.labels['org.opencontainers.image.created'] }}
+          echo ${{ steps.extra.outputs.labels['org.opencontainers.image.version'] }}
+          echo ${{ steps.extra.outputs.labels['org.opencontainers.image.revision'] }}

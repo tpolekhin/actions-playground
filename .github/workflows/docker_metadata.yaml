@@ -24,4 +24,4 @@ jobs:
         run: echo ${{ steps.bake.outputs.bake }}
 
       - name: steps.meta.outputs.labels.org.opencontainers.image.created
-        run: echo ${{ toJSON(fromJSON(steps.bake.outputs.bake).target.docker-metadata-action.labels) }}
+        run: echo "${{ toJSON(fromJSON(steps.bake.outputs.bake).target.docker-metadata-action.labels) }}"

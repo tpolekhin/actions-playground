@@ -18,7 +18,7 @@ jobs:
 
       - name: Extract meta labels map
         id: extra
-        run: echo ::set-output name=labels::fromJSON(toJSON($(cat ${{ steps.meta.outputs.bake-file }} )).target.docker-metadata-action.labels)
+        run: echo ::set-output name=labels::toJSON(fromJSON($(cat ${{ steps.meta.outputs.bake-file }} )).target.docker-metadata-action.labels)
 
       - name: steps.extra.outputs.labels
         run: |

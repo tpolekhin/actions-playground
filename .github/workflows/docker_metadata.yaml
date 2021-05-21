@@ -18,10 +18,10 @@ jobs:
 
       - name: Extract meta labels map
         id: extra
-        run: echo ::set-output name=labels::toJSON(fromJSON($(cat ${{ steps.meta.outputs.bake-file }} )).target.docker-metadata-action.labels)
+        run: echo ::set-output name=labels::$(jq -r -c '.target."docker-metadata-action".labels' ${{ steps.meta.outputs.bake-file }})
 
       - name: steps.extra.outputs.labels
         run: |
-          echo ${{ steps.extra.outputs.labels['org.opencontainers.image.created'] }}
-          echo ${{ steps.extra.outputs.labels['org.opencontainers.image.version'] }}
-          echo ${{ steps.extra.outputs.labels['org.opencontainers.image.revision'] }}
+          echo ${{ fromJSON(steps.extra.outputs.labels)['org.opencontainers.image.created'] }}
+          echo ${{ fromJSON(steps.extra.outputs.labels)['org.opencontainers.image.version'] }}
+          echo ${{ fromJSON(steps.extra.outputs.labels)['org.opencontainers.image.revision'] }}

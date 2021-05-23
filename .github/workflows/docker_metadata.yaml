@@ -11,17 +11,13 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Prepare image metadata
-        uses: docker/metadata-action@v3
+        uses: docker/metadata-action@master
         id: meta
         with:
           images: dummy
 
-      - name: Extract meta labels map
-        id: extra
-        run: echo ::set-output name=labels::$(jq -r -c '.target."docker-metadata-action".labels' ${{ steps.meta.outputs.bake-file }})
-
-      - name: steps.extra.outputs.labels
+      - name: steps.extra.outputs.json
         run: |
-          echo ${{ fromJSON(steps.extra.outputs.labels)['org.opencontainers.image.created'] }}
-          echo ${{ fromJSON(steps.extra.outputs.labels)['org.opencontainers.image.version'] }}
-          echo ${{ fromJSON(steps.extra.outputs.labels)['org.opencontainers.image.revision'] }}
+          echo ${{ fromJSON(steps.extra.outputs.json)['org.opencontainers.image.created'] }}
+          echo ${{ fromJSON(steps.extra.outputs.json)['org.opencontainers.image.version'] }}
+          echo ${{ fromJSON(steps.extra.outputs.json)['org.opencontainers.image.revision'] }}

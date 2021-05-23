@@ -16,8 +16,8 @@ jobs:
         with:
           images: dummy
 
-      - name: steps.extra.outputs.json
+      - name: steps.meta.outputs.json
         run: |
-          echo ${{ fromJSON(steps.extra.outputs.json)['org.opencontainers.image.created'] }}
-          echo ${{ fromJSON(steps.extra.outputs.json)['org.opencontainers.image.version'] }}
-          echo ${{ fromJSON(steps.extra.outputs.json)['org.opencontainers.image.revision'] }}
+          echo ${{ fromJSON(steps.meta.outputs.json)['org.opencontainers.image.created'] }}
+          echo ${{ fromJSON(steps.meta.outputs.json)['org.opencontainers.image.version'] }}
+          echo ${{ fromJSON(steps.meta.outputs.json)['org.opencontainers.image.revision'] }}

@@ -6,3 +6,5 @@ resource "null_resource" "one" {
     command = "echo apply module one"
   }
 }
+
+# Add feature change to module one

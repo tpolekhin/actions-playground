@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        module:
+        modules:
           - tf-mod-one
           - tf-mod-two
     steps:

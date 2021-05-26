@@ -8,8 +8,16 @@ on:
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        module:
+          - tf-mod-one
+          - tf-mod-two
     steps:
       - uses: GoogleCloudPlatform/release-please-action@v2
         with:
+          path: modules/${{ matrix.modules }}
           release-type: terraform-module
+          package-name: ${{ matrix.modules }}
           monorepo-tags: true

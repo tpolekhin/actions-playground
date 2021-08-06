@@ -8,3 +8,4 @@ resource "null_resource" "one" {
 }
 
 # Add feature change to module one
+# add new feature

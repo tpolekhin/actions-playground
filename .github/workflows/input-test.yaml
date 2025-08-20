@@ -14,6 +14,9 @@ on:
           - dev
           - qa
           - prod
+env:
+  ENVIRONMENT: ${{ inputs == null && 'dev' || inputs.environment }}
+
 jobs:
   build:
     name: Build

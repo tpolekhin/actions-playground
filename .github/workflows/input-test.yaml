@@ -1,0 +1,27 @@
+name: Input Test
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - qa
+          - prod
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run
+        run: |
+          echo "Environment: ${{ inputs.environment }}"
+        

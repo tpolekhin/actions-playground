@@ -26,5 +26,5 @@ jobs:
         uses: actions/checkout@v4
       - name: Run
         run: |
-          echo "Environment: ${{ inputs.environment }}"
+          echo "Environment: ${{ env.ENVIRONMENT }}"
         

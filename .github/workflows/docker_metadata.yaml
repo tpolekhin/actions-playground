@@ -1,6 +1,10 @@
 name: Docker Metadata Testing
 
-on: push 
+on:
+  push:
+    branches:
+      - '**'
+  workflow_dispatch:
 
 jobs:
   steps-outcome:
@@ -15,9 +19,14 @@ jobs:
         id: meta
         with:
           images: dummy
+          tags: |
+            type=sha,enable=true,priority=1000,prefix=,suffix=,format=short
+            type=ref,enable=true,priority=600,prefix=,suffix=,event=branch
+            type=ref,enable=true,priority=600,prefix=,suffix=,event=tag
 
       - name: steps.meta.outputs.json
         run: |
           echo ${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.created'] }}
           echo ${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.version'] }}
           echo ${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.revision'] }}
+          echo ${{ fromJSON(steps.meta.outputs.json).tags[0] }}

@@ -31,3 +31,4 @@ jobs:
           echo ${{ fromJSON(steps.meta.outputs.json).labels['org.opencontainers.image.revision'] }}
           echo ${{ fromJSON(steps.meta.outputs.json).tags[0] }}
           echo ${{ steps.meta.outputs.json }}
+          echo ${{ steps.meta.outputs.tag-names }}

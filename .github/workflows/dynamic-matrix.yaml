@@ -9,11 +9,18 @@ on:
       service2:
         type: boolean
         description: "Build service 2"
+      service3:
+        type: boolean
+        description: "Build service 3"
 
 jobs:
   build:
     runs-on: ubuntu-latest
     name: Build
+    if: ${{ github.event.inputs[${{matrix.service}}] == true }}
+    strategy:
+      matrix:
+        service: ["service1", "service2", "service3"]
     steps:
       - run: echo "Inputs ${{ toJSON(github.event.inputs) }}"
       - run: echo "Inputs star ${{ toJSON(github.event.inputs.*) }}"

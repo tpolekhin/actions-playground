@@ -1,0 +1,26 @@
+name: Dynamic Matrix Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      service1:
+        type: boolean
+        description: "Build service 1"
+      service2:
+        type: boolean
+        description: "Build service 2"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build
+    strategy:
+      matrix:
+        include:
+          - service: service1
+          - service: service2
+        exclude:
+          - service: ${{ github.event.inputs.service1 == 'false' && 'service1' }}
+          - service: ${{ github.event.inputs.service1 == 'false' && 'service1' }}
+    steps:
+      - run: echo "Building ${{ matrix.service }}"

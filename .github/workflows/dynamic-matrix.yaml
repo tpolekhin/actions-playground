@@ -14,14 +14,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: Build
-    strategy:
-      matrix:
-        include:
-          - service: service1
-          - service: service2
-        exclude:
-          - service: ${{ github.event.inputs.service1 == 'false' && 'service1' }}
-          - service: ${{ github.event.inputs.service1 == 'false' && 'service1' }}
     steps:
       - run: echo "Inputs ${{ toJSON(github.event.inputs) }}"
       - run: echo "Inputs star ${{ toJSON(github.event.inputs.*) }}"
